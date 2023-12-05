@@ -1,0 +1,19 @@
+on:
+  workflow_dispatch:
+env:
+  mascot: Mona
+  super_duper_var: totally_awesome
+
+jobs:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'Hi ${{ env.mascot }}'  # variables locales
+      - run: echo 'Hi ${{ env.mascot }}'  # variables locales
+        env:
+          mascot: Octocat
+      - name: ${{vars.JOB_NAME}} #using env variables
+        if: ${{ vars.USE_VARIABLES == 'true' }} ##using repository variable
+        run: echo 'using variables'
+      - name: demo
+        if: ${{ github.ref == 'refs/heads/main' }} ## using default variables
+        run: echo 'usa $GITHUB_REF'
