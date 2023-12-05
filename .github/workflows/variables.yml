@@ -21,7 +21,7 @@ jobs:
         env:
           mascot: ${{ inputs.deploy_target }}
       - name: ${{ vars.JOB_NAME }} #using env variables
-        run: echo "using environment variables $USE_VARIABLES"
+        run: echo "using environment variables $JOB_NAME"
       - name: ${{ vars.USE_VARIABLES }} #using env variables
         if: ${{ vars.USE_VARIABLES == 'true' }} ##using repository variable
         run: echo "using repository variables $USE_VARIABLES"
