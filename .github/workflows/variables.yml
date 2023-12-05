@@ -17,7 +17,7 @@ jobs:
       - run: echo 'Hi ${{ env.mascot }}'  # variables locales
       - run: echo 'Hi ${{ env.mascot }}'  # variables locales
         env:
-          mascot: ${{ input.deploy_target }}
+          mascot: "${{ input.deploy_target }}"
       - name: ${{ vars.JOB_NAME }} #using env variables
         run: echo "using environment variables $USE_VARIABLES"
       - name: ${{ vars.USE_VARIABLES }} #using env variables
