@@ -4,6 +4,7 @@ on:
       deploy_target:
         required: true
         type: string
+
 env:
   mascot: Mona
   super_duper_var: totally_awesome
@@ -16,7 +17,7 @@ jobs:
       - run: echo 'Hi ${{ env.mascot }}'  # variables locales
       - run: echo 'Hi ${{ env.mascot }}'  # variables locales
         env:
-          mascot: Octocat
+          mascot: ${{ input.deploy_target }}
       - name: ${{ vars.JOB_NAME }} #using env variables
         run: echo "using environment variables $USE_VARIABLES"
       - name: ${{ vars.USE_VARIABLES }} #using env variables
@@ -25,5 +26,5 @@ jobs:
       - name: ${{ github.ref }}
         if: ${{ github.ref == 'refs/heads/main' }} ## using default variables
         run: echo "using default variables $GITHUB_REF"
-      - name:  ${{ inputs.perform_deploy }}
-        run: echo "using input ${{ inputs.build_id }}"
+      - name: "${{ inputs.perform_deploy }}"
+        run: echo "using input ${{ inputs.deploy_target }}"
