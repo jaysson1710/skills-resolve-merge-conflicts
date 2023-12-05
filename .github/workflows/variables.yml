@@ -1,5 +1,9 @@
 on:
   workflow_dispatch:
+    inputs:
+      deploy_target:
+        required: true
+        type: string
 env:
   mascot: Mona
   super_duper_var: totally_awesome
@@ -14,8 +18,12 @@ jobs:
         env:
           mascot: Octocat
       - name: ${{ vars.JOB_NAME }} #using env variables
+        run: echo "using environment variables $USE_VARIABLES"
+      - name: ${{ vars.USE_VARIABLES }} #using env variables
         if: ${{ vars.USE_VARIABLES == 'true' }} ##using repository variable
-        run: echo "using variables $USE_VARIABLES"
-      - name: demo
+        run: echo "using repository variables $USE_VARIABLES"
+      - name: ${{ github.ref }}
         if: ${{ github.ref == 'refs/heads/main' }} ## using default variables
-        run: echo "usa $GITHUB_REF"
+        run: echo "using default variables $GITHUB_REF"
+      - name:  ${{ inputs.perform_deploy }}
+        run: echo "using input ${{ inputs.build_id }}"
