@@ -1,3 +1,5 @@
+name: variables
+
 on:
   workflow_dispatch:
     inputs:
