@@ -14,6 +14,8 @@ env:
 jobs:
   ejecucion:
     runs-on: ubuntu-latest
+    env:
+      saludo: "hola todos"
     environment: dev
     steps:
       - run: echo 'Hi ${{ env.mascot }}'  # variables locales
@@ -24,11 +26,13 @@ jobs:
         run: echo "using environment variables $var1"
         env:
           var1: ${{ vars.JOB_NAME }}
-      - name: ${{ vars.USE_VARIABLES }} #using env variables
-        if: ${{ vars.USE_VARIABLES == 'true' }} ##using repository variable
+      - name: ${{ vars.USE_VARIABLES }} ##using repository variable
+        if: ${{ vars.USE_VARIABLES == 'true' }} 
         run: echo "using repository variables ${{ vars.USE_VARIABLES }}"
       - name: ${{ github.ref }}
         if: ${{ github.ref == 'refs/heads/main' }} ## using default variables
         run: echo "using default variables $GITHUB_REF"
       - name: ${{ inputs.deploy_target }}
         run: echo "using input ${{ inputs.deploy_target }}"
+      - name: ${{ env.saludo }}
+        run: echo "using variable en jub $saludo"
