@@ -12,9 +12,9 @@ jobs:
       - run: echo 'Hi ${{ env.mascot }}'  # variables locales
         env:
           mascot: Octocat
-      - name: ${{vars.JOB_NAME}} #using env variables
+      - name: ${{ vars.JOB_NAME }} #using env variables
         if: ${{ vars.USE_VARIABLES == 'true' }} ##using repository variable
-        run: echo 'using variables'
+        run: echo 'using variables $USE_VARIABLES'
       - name: demo
         if: ${{ github.ref == 'refs/heads/main' }} ## using default variables
-        run: echo 'usa $GITHUB_REF'
+        run: echo "usa $GITHUB_REF"
