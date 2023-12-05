@@ -5,6 +5,7 @@ env:
   super_duper_var: totally_awesome
 
 jobs:
+  ejecucion:
     runs-on: ubuntu-latest
     steps:
       - run: echo 'Hi ${{ env.mascot }}'  # variables locales
