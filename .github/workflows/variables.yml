@@ -26,5 +26,5 @@ jobs:
       - name: ${{ github.ref }}
         if: ${{ github.ref == 'refs/heads/main' }} ## using default variables
         run: echo "using default variables $GITHUB_REF"
-      - name: ${{ inputs.perform_deploy }}
+      - name: ${{ inputs.deploy_target }}
         run: echo "using input ${{ inputs.deploy_target }}"
